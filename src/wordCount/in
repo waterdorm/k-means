@@ -1,0 +1,17 @@
+[water@localhost hadoop]$ jps
+3421 
+4017 DataNode
+4254 JobTracker
+4175 SecondaryNameNode
+4445 Jps
+4394 TaskTracker
+3872 NameNode
+[water@localhost hadoop]$ jps
+3421 
+4017 DataNode
+4254 JobTracker
+4175 SecondaryNameNode
+4394 TaskTracker
+4457 Jps
+3872 NameNode
+[water@localhost hadoop]$ 

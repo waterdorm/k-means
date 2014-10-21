@@ -1,0 +1,92 @@
+	   StringBuffer sb = new StringBuffer();
+	   for(int i= 0;i<dimention;i++)
+	   {
+		   sb.append(sum[i]/sumCount + ",");
+	   }
+
+
+package wordCount;
+
+import java.io.IOException;
+import java.util.StringTokenizer;
+
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.LongWritable;
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapred.JobConf;
+import org.apache.hadoop.mapred.SequenceFileInputFormat;
+import org.apache.hadoop.mapred.SequenceFileOutputFormat;
+import org.apache.hadoop.mapreduce.Job;
+import org.apache.hadoop.mapreduce.Mapper;
+import org.apache.hadoop.mapreduce.Reducer;
+import org.apache.hadoop.mapreduce.Reducer.Context;
+import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
+import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
+import org.apache.hadoop.util.GenericOptionsParser;
+
+import wordCount.WordCount.IntSumReducer;
+import wordCount.WordCount.TokenizerMapper;
+
+
+
+public class Html{
+	
+	  public static class HtmlMapper extends Mapper<LongWritable, Text,LongWritable, Text>
+      {
+   
+  
+     
+   public void map(LongWritable key, Text value, Context context
+                   ) throws IOException, InterruptedException {
+
+     }
+
+   }
+ 
+	  public static class HtmlReducer 
+	  extends Reducer<LongWritable, Text, LongWritable, Text> {
+
+   public void reduce(LongWritable key, Iterable<Text> values, 
+                      Context context
+                      ) throws IOException, InterruptedException {
+  
+   }
+}
+	public int run(Path input, Path output) throws Exception{
+		Configuration conf = new Configuration();
+
+	    Job job = new Job(conf, "Html");
+	    job.setJarByClass(WordCount.class);
+	    job.setMapperClass(HtmlMapper.class);
+	    job.setCombinerClass(HtmlReducer.class);
+	    job.setReducerClass(HtmlReducer.class);
+	    job.setOutputKeyClass(LongWritable.class);
+	    job.setOutputValueClass(Text.class);
+	    FileInputFormat.addInputPath(job, input);
+	    FileOutputFormat.setOutputPath(job, output);
+	    job.waitForCompletion(true);
+		return 0;
+	}
+
+}
+
+
+
+
+/**
+ * // Create a new JobConf
+		JobConf conf = new JobConf(new Configuration(),Html.class);
+	    //Specify various job-specific parameters
+		conf.setJobName("html");
+	    //FileInputFormat.addInputPath(conf, ));
+	   // FileOutputFormat.setOutputPath(conf, ));
+		//conf.setMapperClass(HtmlMapper.class);
+		//conf.setCombinerClass(HtmlReducer.class);
+		conf.setReducerClass((Html.HtmlReducer.class);
+	    conf.setOutputKeyClass(LongWritable.class);
+	    conf.setOutputValueClass(Text.class);
+		conf.setInputFormat(SequenceFileInputFormat.class);
+		conf.setOutputFormat(SequenceFileOutputFormat.class);
+		**/
