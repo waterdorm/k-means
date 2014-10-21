@@ -1,3 +1,3 @@
 k-means
 =======
-主要k-means的实现代码
+hadoop网页聚类，主要k-means的实现代码
